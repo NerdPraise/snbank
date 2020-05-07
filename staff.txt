@@ -1,15 +1,1 @@
-{ 
-    "username" : {
-    "Username" : "username",
-    "Password" : "soemt",
-    "Full Name" : "soemt",
-    "Email" : "soemt"
-    },
-    
-    "Praise": {
-        "Username" : "praise",
-        "Password" : "soemt",
-        "Full Name" : "soemt",
-        "Email" : "soemt",
-    }
-}
+{"data": [{"username": "Scott", "Password": "password", "email": "scott@gm.com", "Full Name": "Scoot Jackson"}, {"username": "Larry", "password": "googleom", "email": "larry@gh.com","Full Name": "Larry Chapman"}]}
