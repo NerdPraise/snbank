@@ -42,7 +42,7 @@ class Bank:
             with open("staff.txt", "r") as staff_files:
                 staff = json.load(staff_files)
                 for user in staff["data"]:
-                    if username == user["username"].lower() and password == user["Password"]:
+                    if username == user["username"].lower() and password == user["password"]:
                         self._username = username
                         self._password = password
                         self._logged_in = True
@@ -85,7 +85,6 @@ class Bank:
         self._show_account_settings()
 
     def logout(self):
-        # if os.path.exists(f"{self._username}.txt"):
         os.remove(f"{self._username}.txt")
         self._username, self._password, self._logged_in = None, None, False
         self.start()
@@ -93,11 +92,15 @@ class Bank:
     def get_account_details(self):
         account_number = input("Input account number ")
         with open("customer.txt", "r") as customer:
-            total_details = ast.literal_eval(customer.read())
-            user_details  = total_details[account_number]
-            for index, details in user_details.items():
-                print(index, details)
-
+            total_details = json.load(customer)
+            for data in total_details["account"]:
+                if account_number == data["Account number"]:
+                    deets = data
+                    break
+        for key, values in deets.items():
+            print(f"{key}, {values}")
+        self._show_account_settings()
+                    
     def _create_session(self, work=None):
         with open(f"{self._username}.txt", "a") as sess:
             sess.write(f"{self._username} {work} \n")
