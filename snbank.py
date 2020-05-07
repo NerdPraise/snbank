@@ -78,7 +78,10 @@ class Bank:
         """Create a new customer account"""
         details = {}
         details["Account name"] = input("Account name ")
-        details["Opening balance"] = int(input("Opening balance "))
+        try:
+            details["Opening balance"] = int(input("Opening balance "))
+        except:
+            raise TypeError("Must be an integer"))
         details["Account type"] = input("Account type ")
         details["Account email"] = input("Account email ")
         details["Account number"] = "".join(random.choice(string.digits) for i in range(10))
