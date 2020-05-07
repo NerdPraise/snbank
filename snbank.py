@@ -81,7 +81,7 @@ class Bank:
         try:
             details["Opening balance"] = int(input("Opening balance "))
         except:
-            raise TypeError("Must be an integer"))
+            raise TypeError("Must be an integer")
         details["Account type"] = input("Account type ")
         details["Account email"] = input("Account email ")
         details["Account number"] = "".join(random.choice(string.digits) for i in range(10))
