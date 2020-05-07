@@ -1,0 +1,15 @@
+{ 
+    "username" : {
+    "Username" : "username",
+    "Password" : "soemt",
+    "Full Name" : "soemt",
+    "Email" : "soemt"
+    },
+    
+    "Praise": {
+        "Username" : "praise",
+        "Password" : "soemt",
+        "Full Name" : "soemt",
+        "Email" : "soemt",
+    }
+}
