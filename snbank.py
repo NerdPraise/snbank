@@ -16,11 +16,13 @@ class Bank:
 
 
     def __init__(self):
+        """Initialize the staff details to none. Useful for session"""
         self._username = None
         self._password = None 
         self._logged_in = False
 
     def start(self):
+        """Start the simulation"""
         print("""
         1 Staff Login
         2 Close App
@@ -35,6 +37,7 @@ class Bank:
                 self.close_app()
    
     def log_in_user(self):
+        """Logs in the staff as corresponding to the staff file"""
         while not self._logged_in:
             print("Please input correct info")
             username = input("What is your name ").lower()
@@ -50,10 +53,11 @@ class Bank:
                     else:
                         self._logged_in = False
         else:
-            self._create_session(work="logged in")
+            self._create_session(action="logged in")
             self._show_account_settings()
 
     def _show_account_settings(self):
+        """ Actions to perform on the account as a staff"""
         print("""
         1 Create new bank account
         2 Check Account Details
@@ -71,6 +75,7 @@ class Bank:
                 self.logout()
     
     def _create_account(self):
+        """Create a new customer account"""
         details = {}
         details["Account name"] = input("Account name ")
         details["Opening balance"] = int(input("Opening balance "))
@@ -81,15 +86,17 @@ class Bank:
         Bank.CUSTOMER_DETAILS["account"].append(details)
         with open("customer.txt", "w") as customer:
             json.dump(Bank.CUSTOMER_DETAILS, customer)
-        self._create_session(work=f"created account{details['Account name']}")
+        self._create_session(action=f"created account{details['Account name']}")
         self._show_account_settings()
 
     def logout(self):
+        """Logs out staff and deletes session files"""
         os.remove(f"{self._username}.txt")
         self._username, self._password, self._logged_in = None, None, False
         self.start()
 
     def get_account_details(self):
+        """"Gets the account details of the speicified acoount number"""
         account_number = input("Input account number ")
         with open("customer.txt", "r") as customer:
             total_details = json.load(customer)
@@ -98,12 +105,13 @@ class Bank:
                     deets = data
                     break
         for key, values in deets.items():
-            print(f"{key}, {values}")
+            print(f"\t\t{key}, {values}")
         self._show_account_settings()
                     
-    def _create_session(self, work=None):
+    def _create_session(self, action=None):
+        """This creates a session as the staff performs an action"""
         with open(f"{self._username}.txt", "a") as sess:
-            sess.write(f"{self._username} {work} \n")
+            sess.write(f"{self._username} {action} \n")
 
 
     def close_app(self):
